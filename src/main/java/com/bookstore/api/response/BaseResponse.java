@@ -20,6 +20,11 @@ public  class BaseResponse extends ApiResource{
 	
 	public BaseResponse() {}
 	
+	public BaseResponse(String code, String message) {
+		this.errorCode=code;
+		this.errorMessage=message;
+	}
+
 	public static class BaseResponseBuilder{
 		private String errorMessage;
 		private String errorCode;
@@ -46,7 +51,7 @@ public  class BaseResponse extends ApiResource{
 		
 	}
 	
-	public static BaseResponseBuilder builder(){
+	public static BaseResponseBuilder baseBuilder(){
 		return new BaseResponseBuilder();
 	}
 

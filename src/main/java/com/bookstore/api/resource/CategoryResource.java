@@ -1,11 +1,13 @@
 package com.bookstore.api.resource;
 
+import com.bookstore.api.response.BaseResponse;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CategoryResource extends ApiResource {
+public class CategoryResource extends BaseResponse {
 	
 	private String name;
 	

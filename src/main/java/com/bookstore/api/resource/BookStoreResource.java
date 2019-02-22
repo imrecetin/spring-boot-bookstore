@@ -1,6 +1,7 @@
 package com.bookstore.api.resource;
 
 
+import com.bookstore.api.response.BaseResponse;
 import com.bookstore.model.CITY;
 
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BookStoreResource extends ApiResource{
+public class BookStoreResource extends BaseResponse{
 
 	private String name;
 	private CITY city;
