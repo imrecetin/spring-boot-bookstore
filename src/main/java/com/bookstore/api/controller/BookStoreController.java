@@ -36,7 +36,7 @@ public class BookStoreController {
 	}
 	
 	@GetMapping
-	public BookStoreResourceCollection books() {
+	public BookStoreResourceCollection bookStores() {
 		List<BookStore> bookStores = bookStoreService.findAll();
 		List<BookStoreResource> collection = bookStores.stream().map(b-> BookStoreResource.builder().name(b.getName()).city(b.getCity()).build()).collect(Collectors.toList());
 		return BookStoreResourceCollection.builder().resources(collection).build();
