@@ -23,7 +23,7 @@ public class BookStoreExceptionAdvisor {
 	
 	@ExceptionHandler(RecordNotFoundException.class)
     public final ResponseEntity<Object> handleSanalPosDecoderException(Exception ex, WebRequest request){
-		BaseResponse error=new BaseResponse(BookStoreResponseErrorCode.RUNTIME_ERROR.getCode(),ExceptionUtils.getMessage(ex));
+		BaseResponse error=new BaseResponse(BookStoreResponseErrorCode.NO_RECORD_FOUND.getCode(),ExceptionUtils.getMessage(ex));
 		return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 	
