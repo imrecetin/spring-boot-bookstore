@@ -12,4 +12,6 @@ public interface BookService {
 
 	public List<Book> findByCategoryAndBookStore(Long categoryID, Long bookStoreID);
 
+	public Book update(Book model);
+
 }

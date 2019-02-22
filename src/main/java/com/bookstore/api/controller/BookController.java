@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,12 @@ public class BookController {
 	@PostMapping
 	public BaseResponse create(@RequestBody BookResource request) {
 		Book book = bookService.add(mapper.mapToModel(request));
+		return BaseResponse.baseBuilder().responseId(book.getId()).build();
+	}
+	
+	@PutMapping
+	public BaseResponse update(@RequestBody BookResource request) {
+		Book book = bookService.update(mapper.mapToModel(request));
 		return BaseResponse.baseBuilder().responseId(book.getId()).build();
 	}
 	

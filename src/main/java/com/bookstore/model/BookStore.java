@@ -15,10 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "bookstore")
 @Data
+@NoArgsConstructor
 public class BookStore extends AuditModel implements HasId{
 
 	@Id
@@ -40,6 +42,7 @@ public class BookStore extends AuditModel implements HasId{
 	private BookStore(BookStoreBuilder builder) {
 		this.name=builder.name;
 		this.city=builder.city;
+		this.id=builder.id;
 	}
 	
 	public static BookStoreBuilder builder() {
@@ -47,6 +50,7 @@ public class BookStore extends AuditModel implements HasId{
 	}
 
 	public static class BookStoreBuilder{
+		private Long id;
 		private String name;
 		private CITY city;
 		private	List<Book> books;
@@ -66,7 +70,8 @@ public class BookStore extends AuditModel implements HasId{
 		    return this;
 		}
 		
-		public BookStore build() {
+		public BookStore build(Long id) {
+			this.id=id;
 			return new BookStore(this);
 		}
 		

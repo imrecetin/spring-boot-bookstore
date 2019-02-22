@@ -6,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,11 +22,15 @@ public class Category extends AuditModel implements HasId{
 	
 	public Category(CategoryBuilder builder) {
 		this.name=builder.name;
+		this.id=builder.id;
 	}
 	
 	public static class CategoryBuilder{
 		private String name;
-		public Category build() {
+		private Long id;
+		
+		public Category build(Long id) {
+			this.id=id;
 			return new Category(this);
 		}
 		

@@ -10,12 +10,12 @@ public class CategoryMapper extends Mapper<CategoryResource, Category> {
 
 	@Override
 	public Category mapToModel(CategoryResource resource) {
-		return Category.builder().name(resource.getName()).build();
+		return Category.builder().name(resource.getName()).build(resource.getResponseId());
 	}
 
 	@Override
 	public CategoryResource mapToRequest(Category model) {
-		return CategoryResource.builder().name(model.getName()).build();
+		return CategoryResource.builder().name(model.getName()).build(model.getId());
 	}
 
 }
