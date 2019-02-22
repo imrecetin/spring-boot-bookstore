@@ -28,7 +28,7 @@ public class CategoryController {
 	public BaseResponse create(@RequestBody CategoryRequest request) {
 		Category category = mapper.mapToModel(request.getResource());
 		category = categoryService.add(category);
-		return BaseResponse.builder().responseId(category.getId()).build();
+		return BaseResponse.baseBuilder().responseId(category.getId()).build();
 	}
 	
 	@GetMapping
