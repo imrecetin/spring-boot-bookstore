@@ -44,12 +44,12 @@ public class BookResource extends BaseResponse{
 		}
 		
 		public BookResourceBuilder category(Category category) {
-			this.category=CategoryResource.builder().name(category.getName()).build();
+			this.category=CategoryResource.builder().name(category.getName()).build(category.getId());
 		    return this;
 		}
 		
 		public BookResourceBuilder bookStores(List<BookStore> bookStores) {
-			List<BookStoreResource> mappedBookStore = bookStores.stream().map(s->BookStoreResource.builder().name(s.getName()).city(s.getCity()).build()).collect(Collectors.toList());
+			List<BookStoreResource> mappedBookStore = bookStores.stream().map(s->BookStoreResource.builder().name(s.getName()).city(s.getCity()).build(s.getId())).collect(Collectors.toList());
 			this.bookStores=mappedBookStore;
 		    return this;
 		}
