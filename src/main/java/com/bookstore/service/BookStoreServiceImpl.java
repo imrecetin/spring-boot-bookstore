@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.bookstore.model.Book;
 import com.bookstore.model.BookStore;
@@ -27,7 +28,11 @@ public class BookStoreServiceImpl implements BookStoreService{
 
 	@Override
 	public List<BookStore> findAll() {
-		return bookStoreRepository.findAll();
+		List<BookStore> bookStores = bookStoreRepository.findAll();
+		if (CollectionUtils.isEmpty(bookStores)) {
+			throw new RecordNotFoundException("BookStores No Found");
+		}
+		return bookStores;
 	}
 
 	@Override
@@ -37,17 +42,29 @@ public class BookStoreServiceImpl implements BookStoreService{
 
 	@Override
 	public Book findBookBy(Long bookStoreId, Long bookID) {
-		return bookStoreRepository.findBookBy(bookStoreId,bookID);
+		Book book = bookStoreRepository.findBookBy(bookStoreId,bookID);
+		if (!Optional.ofNullable(book).isPresent()) {
+			throw new RecordNotFoundException("Book No Found");
+		}
+		return book;
 	}
 
 	@Override
 	public List<Book> findBooksBy(Long bookStoreId) {
-		return bookStoreRepository.findBooksBy(bookStoreId);
+		List<Book> books = bookStoreRepository.findBooksBy(bookStoreId);
+		if (CollectionUtils.isEmpty(books)) {
+			throw new RecordNotFoundException("Books No Found");
+		}
+		return books;
 	}
 
 	@Override
 	public Book findBookBy(Long bookStoreId) {
-		return bookRepository.findBookBy(bookStoreId);
+		Book book = bookRepository.findBookBy(bookStoreId);
+		if (!Optional.ofNullable(book).isPresent()) {
+			throw new RecordNotFoundException("Book No Found");
+		}
+		return book;
 	}
 
 	@Override

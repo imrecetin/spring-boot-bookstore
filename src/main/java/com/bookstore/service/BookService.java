@@ -10,4 +10,6 @@ public interface BookService {
 
 	public List<Book> findAll();
 
+	public List<Book> findByCategoryAndBookStore(Long categoryID, Long bookStoreID);
+
 }
