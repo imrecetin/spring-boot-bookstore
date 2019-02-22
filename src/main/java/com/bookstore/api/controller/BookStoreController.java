@@ -38,7 +38,7 @@ public class BookStoreController {
 	@GetMapping
 	public BookStoreResourceCollection bookStores() {
 		List<BookStore> bookStores = bookStoreService.findAll();
-		List<BookStoreResource> collection = bookStores.stream().map(b-> BookStoreResource.builder().name(b.getName()).city(b.getCity()).build()).collect(Collectors.toList());
+		List<BookStoreResource> collection = bookStores.stream().map(b-> BookStoreResource.builder().name(b.getName()).city(b.getCity()).build(b.getId())).collect(Collectors.toList());
 		return BookStoreResourceCollection.builder().resources(collection).build();
 	}
 	
@@ -57,7 +57,7 @@ public class BookStoreController {
 				.basePrice(book.getBasePrice())
 				.category(book.getCategory())
 				.bookStorePrice(book.calculateStorePrice(bookStore))
-				.build();
+				.build(book.getId());
 	}
 	
 	@GetMapping(path="/{bookStoreId}/book/")

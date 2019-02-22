@@ -1,18 +1,21 @@
 package com.bookstore.api.mapper;
 
+import com.bookstore.api.resource.BookResource;
 import com.bookstore.api.resource.CategoryResource;
+import com.bookstore.model.Book;
 import com.bookstore.model.Category;
 
-public class BookMapper extends Mapper<CategoryResource, Category> {
+public class BookMapper extends Mapper<BookResource, Book> {
 
 	@Override
-	public Category mapToModel(CategoryResource resource) {
-		return Category.builder().name(resource.getName()).build();
+	public Book mapToModel(BookResource resource) {
+		return null;
 	}
 
 	@Override
-	public CategoryResource mapToRequest(Category model) {
-		return CategoryResource.builder().name(model.getName()).build();
+	public BookResource mapToRequest(Book model) {
+		return null;
 	}
+
 
 }

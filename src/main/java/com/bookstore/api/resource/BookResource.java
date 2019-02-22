@@ -2,6 +2,8 @@ package com.bookstore.api.resource;
 
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.bookstore.api.response.BaseResponse;
 import com.bookstore.model.BookStore;
@@ -16,6 +18,7 @@ public class BookResource extends BaseResponse{
 
 	private String name;
 	private CategoryResource category;
+	private List<BookStoreResource> bookStores;
 	private BigDecimal basePrice;
 	private BigDecimal bookStorePrice;
 	
@@ -24,11 +27,14 @@ public class BookResource extends BaseResponse{
 		this.category=builder.category;
 		this.basePrice=builder.basePrice;
 		this.bookStorePrice=builder.bookStorePrice;
+		this.responseId=builder.id;
 	}
 	
 	public static class BookResourceBuilder{
+		private Long id;
 		private String name;
 		private CategoryResource category;
+		private List<BookStoreResource> bookStores;
 		private BigDecimal basePrice;
 		private BigDecimal bookStorePrice;
 		
@@ -42,6 +48,13 @@ public class BookResource extends BaseResponse{
 		    return this;
 		}
 		
+		public BookResourceBuilder bookStores(List<BookStore> bookStores) {
+			List<BookStoreResource> mappedBookStore = bookStores.stream().map(s->BookStoreResource.builder().name(s.getName()).city(s.getCity()).build()).collect(Collectors.toList());
+			this.bookStores=mappedBookStore;
+		    return this;
+		}
+		
+		
 		public BookResourceBuilder basePrice(BigDecimal basePrice) {
 			this.basePrice=basePrice;
 		    return this;
@@ -52,7 +65,8 @@ public class BookResource extends BaseResponse{
 		    return this;
 		}
 		
-		public BookResource build() {
+		public BookResource build(Long id) {
+			this.id=id;
 			return new BookResource(this);
 		}
 	}

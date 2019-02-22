@@ -17,9 +17,11 @@ public class BookStoreResource extends BaseResponse{
 	private BookStoreResource(BookStoreResourceBuilder builder) {
 		this.name=builder.name;
 		this.city=builder.city;
+		this.responseId=builder.id;
 	}
 	
 	public static class BookStoreResourceBuilder{
+		private Long id;
 		private String name;
 		private CITY city;
 		
@@ -33,7 +35,8 @@ public class BookStoreResource extends BaseResponse{
 		    return this;
 		}
 		
-		public BookStoreResource build() {
+		public BookStoreResource build(Long id) {
+			this.id=id;
 			return new BookStoreResource(this);
 		}
 	}

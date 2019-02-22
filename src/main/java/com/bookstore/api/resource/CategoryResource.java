@@ -13,9 +13,11 @@ public class CategoryResource extends BaseResponse {
 	
 	private  CategoryResource(CategoryResourceBuilder builder) {
 		this.name=builder.name;
+		this.responseId=builder.id;
 	}
 	
 	public static class CategoryResourceBuilder{
+		private Long id;
 		private String name;
 		
 		public CategoryResourceBuilder name(String name) {
@@ -23,7 +25,8 @@ public class CategoryResource extends BaseResponse {
 			return this;
 		}
 		
-		public CategoryResource build() {
+		public CategoryResource build(Long id) {
+			this.id=id;
 			return new CategoryResource(this);
 		}
 	}

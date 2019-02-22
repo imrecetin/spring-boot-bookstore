@@ -34,7 +34,7 @@ public class CategoryController {
 	@GetMapping
 	public CategoryResourceCollection books() {
 		List<Category> categories = categoryService.findAll();
-		List<CategoryResource> collection = categories.stream().map(c-> CategoryResource.builder().name(c.getName()).build()).collect(Collectors.toList());
+		List<CategoryResource> collection = categories.stream().map(c-> CategoryResource.builder().name(c.getName()).build(c.getId())).collect(Collectors.toList());
 		return CategoryResourceCollection.builder().resources(collection).build();
 	}
 	
