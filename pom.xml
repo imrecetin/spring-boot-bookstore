@@ -12,6 +12,7 @@
 	<artifactId>spring-boot-bookstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-bookstore</name>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot And Bookstore</description>
 
 	<properties>
